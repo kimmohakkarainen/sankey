@@ -7,15 +7,34 @@ import cellEditFactory, { Type } from "react-bootstrap-table2-editor";
 
 import UserDetailModal from "./userdetailmodal";
 import FlexDetailModal from "./flexdetailmodal";
+import ProjectPrefModal from "./projectprefmodal";
+import PrivilegeModal from "./privilegemodal";
+import PasswordModal from "./passwordmodal";
 
 /* import { fetchPersons, postPerson } from "../actions"; */
 
-const cellOptions = { false: "Non-privileged", true: "Privileged" };
+const cellOptions = {
+  0: "Deleted",
+  1: "Closed",
+  2: "Contractor",
+  3: "Team member",
+  4: "Project manager",
+  5: "Administrator"
+};
+
+function flexFormatter({ person }) {
+  const date = person.flexdate;
+  if (date != null && date.length > 0) {
+  } else {
+    return "";
+  }
+}
 
 function PersonAdminView({ persons }) {
   const [editUserDetails, setUserDetails] = useState(null);
   const [editFlexDetails, setFlexDetails] = useState(null);
   const [editProjectPrefs, setProjectPrefs] = useState(null);
+  const [editPrivileges, setPrivileges] = useState(null);
   const [changePassword, setChangePassword] = useState(null);
 
   const columnsProp = [
@@ -32,7 +51,6 @@ function PersonAdminView({ persons }) {
       editable: false,
       events: {
         onClick: (e, column, columnIndex, row, rowIndex) => {
-          console.log(row);
           setUserDetails(row);
         }
       }
@@ -44,7 +62,6 @@ function PersonAdminView({ persons }) {
       editable: false,
       events: {
         onClick: (e, column, columnIndex, row, rowIndex) => {
-          console.log(row);
           setFlexDetails(row);
         }
       }
@@ -53,22 +70,33 @@ function PersonAdminView({ persons }) {
       dataField: "projects",
       text: "Projects",
       headerStyle: { width: "20%" },
-      editable: false
+      editable: false,
+      events: {
+        onClick: (e, column, columnIndex, row, rowIndex) => {
+          setProjectPrefs(row);
+        }
+      }
     },
     {
       dataField: "rights",
-      text: "Privileged",
+      text: "User rights",
       headerStyle: { width: "20%" },
-      editable: false
+      editable: false,
+      formatter: cell => cellOptions[cell],
+      events: {
+        onClick: (e, column, columnIndex, row, rowIndex) => {
+          setPrivileges(row);
+        }
+      }
     },
     {
       dataField: "password",
-      text: "Password",
+      text: "",
       headerStyle: { width: "10%" },
       editable: false,
       events: {
         onClick: (e, column, columnIndex, row, rowIndex) => {
-          console.log(row);
+          setChangePassword(row);
         }
       },
 
@@ -102,6 +130,43 @@ function PersonAdminView({ persons }) {
           }}
         />
       )}
+      {editProjectPrefs && (
+        <ProjectPrefModal
+          user={editProjectPrefs}
+          onSave={user => {
+            if (user != null) {
+              console.log("save pressed");
+              console.log(user);
+            }
+            setProjectPrefs(null);
+          }}
+        />
+      )}
+      {editPrivileges && (
+        <PrivilegeModal
+          user={editPrivileges}
+          onSave={user => {
+            if (user != null) {
+              console.log("save pressed");
+              console.log(user);
+            }
+            setPrivileges(null);
+          }}
+        />
+      )}
+
+      {changePassword && (
+        <PasswordModal
+          user={changePassword}
+          onSave={user => {
+            if (user != null) {
+              console.log("save pressed");
+              console.log(user);
+            }
+            setChangePassword(null);
+          }}
+        />
+      )}
 
       <BootstrapTable
         bordered
@@ -123,19 +188,31 @@ export default function index() {
         personId: 1,
         info: "Aapeli [ apel ]",
         fullname: "Aapeli Root",
-        email: "apel@ap.fi"
+        email: "apel@ap.fi",
+        flexdate: "",
+        flexstart: 0,
+        rights: 5,
+        projects: []
       },
       {
         personId: 2,
         info: "Kiipeli [ kpl ]",
         fullname: "Kiipeli Ruut",
-        email: "ruut@ap.fi"
+        email: "ruut@ap.fi",
+        flexdate: "2020-01-01",
+        flexstart: 0,
+        rights: 3,
+        projects: []
       },
       {
         personId: 3,
         info: "Repeli [ rebel ]",
         fullname: "Rebel Roosna",
-        email: "roosna@ap.fi"
+        email: "roosna@ap.fi",
+        flexdate: "",
+        flexstart: 0,
+        rights: 0,
+        projects: []
       }
     ]
   };

@@ -2,16 +2,16 @@ import React, { useState } from "react";
 
 import { Modal, Button, Form } from "react-bootstrap";
 
-export default function FlexDetailModal({ user, onSave }) {
-  const [date, setDate] = useState(user.flexdate);
-  const [value, setValue] = useState(user.flexstart);
+export default function PasswordModal({ user, onSave }) {
+  const [password1, setPassword1] = useState("");
+  const [password2, setPassword2] = useState("");
 
   const handleClose = () => onSave(null);
   const handleSave = () => {
     const u = {
       personId: user.personId,
-      flexdate: date,
-      flexstart: value
+      password1: password1,
+      password2: password2
     };
     onSave(u);
   };
@@ -21,30 +21,28 @@ export default function FlexDetailModal({ user, onSave }) {
       <Modal.Header closeButton>Edit Person Flex Hour Details</Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group controlId="fullname">
+          <Form.Group controlId="password1">
             <Form.Label>Fullname</Form.Label>
             <Form.Control type="text" readOnly defaultValue={user.fullname} />
           </Form.Group>
           <Form.Group controlId="date">
-            <Form.Label>Flex start date</Form.Label>
+            <Form.Label>New password</Form.Label>
             <Form.Control
-              type="date"
-              value={date}
-              onChange={e => setDate(e.target.value)}
+              type="password"
+              value={password1}
+              onChange={e => setPassword1(e.target.value)}
             />
-            <Form.Text className="text-muted">
-              Start date for calculating flex hour balance
-            </Form.Text>
+            <Form.Text className="text-muted">Set new password</Form.Text>
           </Form.Group>
-          <Form.Group controlId="value">
-            <Form.Label>Flex start value</Form.Label>
+          <Form.Group controlId="password2">
+            <Form.Label>Verify new password</Form.Label>
             <Form.Control
-              type="text"
-              value={value}
-              onChange={e => setValue(e.target.value)}
+              type="password"
+              value={password2}
+              onChange={e => setPassword2(e.target.value)}
             />
             <Form.Text className="text-muted">
-              Start date for calculating flex hour balance
+              Repeat the new password
             </Form.Text>
           </Form.Group>
         </Form>
