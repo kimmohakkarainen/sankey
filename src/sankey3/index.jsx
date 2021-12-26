@@ -6,6 +6,7 @@ import { rgb } from "d3-color";
 import { transition } from "d3-transition";
 import { easeLinear } from "d3";
 import { calculateSankey, drawSankey } from "./drawsankey";
+import { drawBubles } from "./drawbubles";
 
 export default function Sankey({ data, width, height }) {
   const [index, setIndex] = useState(0);
@@ -22,6 +23,7 @@ export default function Sankey({ data, width, height }) {
   }
 
   useEffect(() => {
+    drawBubles({ data: data[index], width, height, svgRef });
     drawSankey({ data: data[index], width, height, svgRef });
   });
 
