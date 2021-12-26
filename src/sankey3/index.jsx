@@ -10,21 +10,30 @@ import { drawBubles } from "./drawbubles";
 
 export default function Sankey({ data, width, height }) {
   const [index, setIndex] = useState(0);
+  const [format, setFormat] = useState(false);
   const svgRef = useRef(null);
 
   function onClick() {
-    if (index + 1 < data.length) {
-      setIndex(1 + index);
+    if (format) {
+      setFormat(false);
+      if (index + 1 < data.length) {
+        setIndex(1 + index);
+      } else {
+        setIndex(0);
+      }
     } else {
-      setIndex(0);
+      setFormat(true);
     }
     console.log("onClick");
-    drawSankey({ data: data[index], width, height, svgRef });
+    /* drawSankey({ data: data[index], width, height, svgRef }); */
   }
 
   useEffect(() => {
-    drawBubles({ data: data[index], width, height, svgRef });
-    drawSankey({ data: data[index], width, height, svgRef });
+    if (format) {
+      drawSankey({ data: data[index], width, height, svgRef });
+    } else {
+      drawBubles({ data: data[index], width, height, svgRef });
+    }
   });
 
   return (
