@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from "react";
 import "./styles.css";
-import Sankey from "./Sankey2";
+/* import Sankey from "./Sankey2"; */
+import Sankey from "./sankey3";
 /* import Sankey from "./ForceGraph"; */
 import Exadeci from "./exadeci";
 import AtozData from "./data/atozdata";
@@ -43,21 +44,22 @@ export default function App() {
 
 */
 
+  return (
+    <div className="App">
+      <Sankey
+        data={[data1, data2, data3, data4, data5]}
+        width={size.width}
+        height={size.height}
+      />
+    </div>
+  );
+
   /*
-return (
-  <div className="App">
-    <Sankey
-      data={[data1, data2, data3, data4, data5]}
-      width={size.width}
-      height={size.height}
-    />
-  </div>
-);
-*/
 
   return (
     <div className="App">
       <PersonAdminView />
     </div>
   );
+  */
 }
