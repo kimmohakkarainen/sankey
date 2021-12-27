@@ -39,19 +39,33 @@ export function drawBubles({ data, width, height, svgRef }) {
 
   console.log(root);
 
-  const leaf = select(svgRef.current)
-    .select("g.nodes")
+  const nodes = select(svgRef.current).select("g.nodes");
+
+  const leaf = nodes
     .selectAll("a")
     .data(root.leaves())
-    .join("a")
-    .attr("transform", (d) => `translate(${d.x},${d.y})`);
-
-  leaf
-    .append("circle")
-    .attr("stroke", stroke)
-    .attr("stroke-width", strokeWidth)
-    .attr("stroke-opacity", strokeOpacity)
-    .attr("fill", (d) => colors(d.data / D.length))
-    .attr("fill-opacity", fillOpacity)
-    .attr("r", (d) => d.r);
+    .join(
+      (enter) => {
+        const a = enter.append("a");
+        a.attr("transform", (d) => `translate(${d.x},${d.y})`);
+        a.append("circle")
+          .attr("stroke", stroke)
+          .attr("stroke-width", strokeWidth)
+          .attr("stroke-opacity", strokeOpacity)
+          .attr("fill", (d) => colors(d.data / D.length))
+          .attr("fill-opacity", fillOpacity)
+          .attr("r", (d) => d.r);
+      },
+      (update) => {
+        update.attr("transform", (d) => `translate(${d.x},${d.y})`);
+        update
+          .select("circle")
+          .attr("fill", (d) => colors(d.data / D.length))
+          .attr("fill-opacity", fillOpacity)
+          .attr("r", (d) => d.r);
+      },
+      (exit) => {
+        exit.remove();
+      }
+    );
 }
