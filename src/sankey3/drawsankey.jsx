@@ -26,6 +26,13 @@ export function drawSankey({ data, width, height, svgRef }) {
 
   select(svgRef.current)
     .select("g.nodes")
+    .selectAll("a")
+    .transition(easeLinear)
+    .duration(500)
+    .remove();
+
+  select(svgRef.current)
+    .select("g.nodes")
     .selectAll("rect")
     .data(nodes)
     .join(

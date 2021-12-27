@@ -48,10 +48,13 @@ export function drawBubles({ data, width, height, svgRef }) {
       (enter) => {
         const a = enter.append("a");
         a.transition(easeLinear)
-          .delay(1000)
+          .delay(500)
           .duration(500)
           .attr("transform", (d) => `translate(${d.x},${d.y})`);
         a.append("circle")
+          .transition(easeLinear)
+          .delay(500)
+          .duration(500)
           .attr("stroke", stroke)
           .attr("stroke-width", strokeWidth)
           .attr("stroke-opacity", strokeOpacity)
@@ -60,12 +63,16 @@ export function drawBubles({ data, width, height, svgRef }) {
           .attr("r", (d) => d.r);
       },
       (update) => {
-        update.attr("transform", (d) => `translate(${d.x},${d.y})`);
         update
           .transition(easeLinear)
-          .delay(1000)
+          .delay(500)
           .duration(500)
+          .attr("transform", (d) => `translate(${d.x},${d.y})`);
+        update
           .select("circle")
+          .transition(easeLinear)
+          .delay(500)
+          .duration(500)
           .attr("stroke", stroke)
           .attr("stroke-width", strokeWidth)
           .attr("stroke-opacity", strokeOpacity)
