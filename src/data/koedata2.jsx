@@ -20,7 +20,10 @@ const KoeData2 = () => {
 
 export const Single = () => {
   return {
-    nodes: [{ name: "tase" }, { name: "Oma pääoma" }],
+    nodes: [
+      { name: "tase", value: 5 },
+      { name: "Oma pääoma", value: 12 }
+    ],
     links: [{ source: 1, target: 0, value: 200000 }]
   };
 };

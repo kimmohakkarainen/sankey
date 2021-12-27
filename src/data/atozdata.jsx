@@ -3,7 +3,7 @@ const AtozData = () => {
     nodes: [
       { name: "tase", value: 214772 },
       /* vastattavaa */
-      { name: "Oma pääoma" },
+      { name: "Oma pääoma", value: 5029 },
       { name: "Osakepääoma", value: 5029 },
       { name: "Edellisten tilikausien voitto", value: 80997 },
       { name: "Tilikauden voitto", value: 128746 },
