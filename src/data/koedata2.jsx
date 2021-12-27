@@ -1,12 +1,12 @@
 const KoeData2 = () => {
   return {
     nodes: [
-      { name: "tase" },
+      { name: "tase", value: 100000 },
       /* vastattavaa */
-      { name: "Oma pääoma" },
-      { name: "Osakepääoma" },
-      { name: "Edellisten tilikausien voitto" },
-      { name: "Tilikauden voitto" }
+      { name: "Oma pääoma", value: 100000 },
+      { name: "Osakepääoma", value: 5000 },
+      { name: "Edellisten tilikausien voitto", value: 90000 },
+      { name: "Tilikauden voitto", value: 5000 }
     ],
     links: [
       { source: 1, target: 0, value: 100000 },

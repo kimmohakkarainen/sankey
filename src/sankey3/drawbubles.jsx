@@ -47,7 +47,10 @@ export function drawBubles({ data, width, height, svgRef }) {
     .join(
       (enter) => {
         const a = enter.append("a");
-        a.attr("transform", (d) => `translate(${d.x},${d.y})`);
+        a.transition(easeLinear)
+          .delay(1000)
+          .duration(500)
+          .attr("transform", (d) => `translate(${d.x},${d.y})`);
         a.append("circle")
           .attr("stroke", stroke)
           .attr("stroke-width", strokeWidth)
@@ -59,13 +62,35 @@ export function drawBubles({ data, width, height, svgRef }) {
       (update) => {
         update.attr("transform", (d) => `translate(${d.x},${d.y})`);
         update
+          .transition(easeLinear)
+          .delay(1000)
+          .duration(500)
           .select("circle")
+          .attr("stroke", stroke)
+          .attr("stroke-width", strokeWidth)
+          .attr("stroke-opacity", strokeOpacity)
           .attr("fill", (d) => colors(d.data / D.length))
           .attr("fill-opacity", fillOpacity)
           .attr("r", (d) => d.r);
       },
       (exit) => {
-        exit.remove();
+        exit.transition(easeLinear).duration(500).remove();
       }
     );
+
+  nodes.selectAll("rect").transition(easeLinear).duration(500).remove();
+
+  select(svgRef.current)
+    .select("g.texts")
+    .selectAll("text")
+    .transition(easeLinear)
+    .duration(500)
+    .remove();
+
+  select(svgRef.current)
+    .select("g.links")
+    .selectAll("path")
+    .transition(easeLinear)
+    .duration(500)
+    .remove();
 }

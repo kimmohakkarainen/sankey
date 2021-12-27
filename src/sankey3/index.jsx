@@ -25,15 +25,16 @@ export default function Sankey({ data, width, height }) {
       setFormat(true);
     }
     console.log("onClick");
-    /* drawSankey({ data: data[index], width, height, svgRef }); */
   }
 
   useEffect(() => {
+    drawBubles({ data: data[index], width, height, svgRef });
+    /*
     if (format) {
       drawSankey({ data: data[index], width, height, svgRef });
     } else {
-      drawBubles({ data: data[index], width, height, svgRef });
     }
+    */
   });
 
   return (

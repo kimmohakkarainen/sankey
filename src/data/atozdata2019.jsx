@@ -1,34 +1,34 @@
 const AtozData2019 = () => {
   return {
     nodes: [
-      { name: "tase" },
+      { name: "tase", value: 299195 },
       /* vastattavaa */
-      { name: "Oma päoma" },
-      { name: "Osakepäoma" },
-      { name: "Edellisten tilikausien voitto" },
-      { name: "Tilikauden voitto" },
+      { name: "Oma päoma", value: 299195 },
+      { name: "Osakepäoma", value: 299195 },
+      { name: "Edellisten tilikausien voitto", value: 299195 },
+      { name: "Tilikauden voitto", value: 299195 },
 
-      { name: "Vieras pääoma" },
+      { name: "Vieras pääoma", value: 299195 },
 
-      { name: "Pitkäaikainen" },
-      { name: "Lainat" },
+      { name: "Pitkäaikainen", value: 299195 },
+      { name: "Lainat", value: 299195 },
 
-      { name: "Lyhytaikainen" },
-      { name: "Ostovelat" },
-      { name: "Muut velat" },
-      { name: "Siirtovelat" },
+      { name: "Lyhytaikainen", value: 299195 },
+      { name: "Ostovelat", value: 299195 },
+      { name: "Muut velat", value: 299195 },
+      { name: "Siirtovelat", value: 299195 },
 
       /* vastaavaa */
 
-      { name: "Pysyvät vastaavat" },
-      { name: "Liikearvo" },
+      { name: "Pysyvät vastaavat", value: 299195 },
+      { name: "Liikearvo", value: 299195 },
 
-      { name: "Vaihtuvat vastaavat" },
+      { name: "Vaihtuvat vastaavat", value: 299195 },
 
-      { name: "Saamiset" },
-      { name: "Myyntisaamiset" },
-      { name: "Muut saamiset" },
-      { name: "Siirtosaamiset" },
+      { name: "Saamiset", value: 299195 },
+      { name: "Myyntisaamiset", value: 299195 },
+      { name: "Muut saamiset", value: 299195 },
+      { name: "Siirtosaamiset", value: 299195 },
 
       { name: "Rahat ja pankkisaamiset" }
     ],
